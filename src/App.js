@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Persons } from "./components/Persons";
-import { Filter } from "./components/Filter"
-import { PersonsForm } from "./components/PersonsForm"
+import { Filter } from "./components/Filter";
+import { PersonsForm } from "./components/PersonsForm";
+import './index.css'
 
 
 export const App = (props) => {
@@ -52,7 +53,7 @@ const handlePersonPhoneChange = (e) => {
         handlePersonPhoneChange={handlePersonPhoneChange}
       />
       <h2>Numbers</h2>
-      <Persons 
+      <Persons
         persons={persons} 
         filterPerson={filterPerson}
       />
