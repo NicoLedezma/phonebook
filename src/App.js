@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Persons } from "./components/Persons";
 import { Filter } from "./components/Filter";
 import { PersonsForm } from "./components/PersonsForm";
 import './index.css'
+import axios from "axios"
 
 
-export const App = (props) => {
-const [persons, setPersons] = useState(props.persons)
+export const App = () => {
+const [persons, setPersons] = useState([])
 const [filterPerson, setFilterPerson] = useState('')
 const [newName, setNewName] = useState('')
 const [newPhone, setNewPhone] = useState('')
+
+useEffect (() => {
+  axios.get('https://jsonplaceholder.typicode.com/users')
+  .then((res) => {
+    const { data } = res
+    setPersons(data)
+  })
+},[])
 
 const handlePersonSearch = (e) => {
   setFilterPerson(e.target.value)
@@ -54,7 +63,7 @@ const handlePersonPhoneChange = (e) => {
       />
       <h2>Numbers</h2>
       <Persons
-        persons={persons} 
+        persons={persons}
         filterPerson={filterPerson}
       />
     </div>
